@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-        Log.d("AAhmetov",getDatabasePath(dbHelper.DATABASE_NAME).getPath()+"");
-        Log.d("AAhmetov",getDatabasePath(dbHelper.DATABASE_NAME).length()+"");
         dbHelper = new DBHelper(this);
         db = dbHelper.getWritableDatabase();
         /*
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         Log.d("AAhmetov","SUPER"+ db.getVersion());
         String[] columnsInCursor = {dbHelper.ID_COLUMN_NAME, DBHelper.BODY_COLUMN_NAME};
-        cursor = db.query(dbHelper.NOTES_TABLE_NAME, columnsInCursor, null, null, null, null, null);
+        cursor = db.query(dbHelper.NOTES_TABLE_NAME, columnsInCursor, null, null, null, null, dbHelper.ID_COLUMN_NAME + " DESC");
         cursor.moveToFirst();
 
         /*
@@ -100,8 +97,8 @@ public class MainActivity extends AppCompatActivity
         }
         */
 
-        String[] fromCursor = {dbHelper.ID_COLUMN_NAME,dbHelper.BODY_COLUMN_NAME};
-        int[] toAdapter = {R.id.txtView1, R.id.txtView2};
+        String[] fromCursor = {dbHelper.BODY_COLUMN_NAME};
+        int[] toAdapter = { R.id.txtView2};
         SimpleCursorAdapter  cursorAdapter = new SimpleCursorAdapter(this, R.layout.my_item_list, cursor, fromCursor, toAdapter);
 
 
@@ -187,11 +184,11 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         String[] columnsInCursor = {dbHelper.ID_COLUMN_NAME, DBHelper.BODY_COLUMN_NAME};
-        cursor = db.query(dbHelper.NOTES_TABLE_NAME, columnsInCursor, null, null, null, null, null);
+        cursor = db.query(dbHelper.NOTES_TABLE_NAME, columnsInCursor, null, null, null, null, dbHelper.ID_COLUMN_NAME + " DESC");
         cursor.moveToFirst();
 
-        String[] fromCursor = {dbHelper.ID_COLUMN_NAME,dbHelper.BODY_COLUMN_NAME};
-        int[] toAdapter = {R.id.txtView1, R.id.txtView2};
+        String[] fromCursor = {dbHelper.BODY_COLUMN_NAME};
+        int[] toAdapter = { R.id.txtView2};
         SimpleCursorAdapter  cursorAdapter = new SimpleCursorAdapter(this, R.layout.my_item_list, cursor, fromCursor, toAdapter);
         LvNotes.setAdapter(cursorAdapter);
         // закрываем подключение при выходе

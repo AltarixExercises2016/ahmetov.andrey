@@ -38,7 +38,6 @@ public class ViewNoteActivity extends AppCompatActivity
         setContentView(R.layout.activity_note);
 
 
-
         tViewNote = (TextView) findViewById(R.id.tViewNote);
         id_note = (getIntent().getIntExtra("idNote", 0));
         tViewNote.setText(DBHelper.getNoteBody(new DBHelper(ViewNoteActivity.this).getWritableDatabase(), id_note));

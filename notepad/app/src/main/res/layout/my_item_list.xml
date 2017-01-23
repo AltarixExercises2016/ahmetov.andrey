@@ -10,7 +10,7 @@
     android:layout_width="wrap_content"
     android:padding="5dp"
     android:textSize="30sp"
-    android:textColor="#0000FA"    >
+    android:textColor="#000000"    >
 </TextView>
     <TextView
         android:id = "@+id/txtView2"
@@ -18,6 +18,6 @@
         android:layout_width="wrap_content"
         android:padding="5dp"
         android:textSize="30sp"
-        android:textColor="#0000FA"        >
+        android:textColor="#000000"        >
     </TextView>
 </LinearLayout>
